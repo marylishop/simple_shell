@@ -1,0 +1,57 @@
+NAME
+simple_shell - Simple command interpreter (shell)
+
+SYNOPSIS
+simple_shell [file]
+
+DESCRIPTION
+Simple Shell is a command language interpreter that executes commands read from the standard input or from a file.
+
+ARGUMENTS
+The only argument that should be supplied to the shell is the name of a file. When this happens, the shell reads and executes commands from this file, then exits.
+
+SHELL GRAMMAR
+- A simple command is a sequence of blank-separated words that are terminated by a control operator.
+- The return value of a simple command is its exit status or 128+n if the command is terminated by signal n.
+
+COMMENTS
+- A word beginning with a # causes that word and all remaining characters on that line to be ignored.
+
+QUOTING
+- Single quotes preserve the literal meaning of characters within them.
+- Double quotes preserve the literal meaning of characters except for the dollar sign ($).
+
+ALIASES
+- An alias is a name and corresponding value set using the alias builtin command.
+- Aliases provide a convenient way to create shorthands for commands.
+
+SIGNALS
+- The shell catches and handles SIGINT (Control+C) when it is interactive.
+
+SHELL BUILTIN COMMANDS
+- alias: Create or display aliases.
+- cd: Change the current directory.
+- env: Print all environment variables.
+- exit: Exit the shell.
+- help: Print help for built-in commands.
+- history: Display executed commands.
+- setenv: Set an environment variable.
+- unsetenv: Remove an environment variable.
+
+ENVIRONMENT
+- HOME: Default argument for the cd command.
+- PATH: Default search path for executables.
+- PS1: The primary prompt string.
+- PWD: The current working directory.
+- OLDPWD: The previous working directory.
+
+FILES
+- /bin/simple_shell: The simple_shell executable.
+- $HOME/.simple_shell_history: The simple_shell history file.
+
+AUTHORS
+- MARYAM BEN AISS, ALX STUDENT
+- FATIMA ZOHRA LAKHAL, ALX STUDENT
+
+SEE ALSO
+- sh(1), bash(1), ksh(1), csh(1)
