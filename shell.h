@@ -103,7 +103,7 @@ int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
 /* toem_parser.c */
-int is_cmd(info_t *, char *);
+command_t *_parser_cmd(char *myself, char *cmd_line);
 char *dup_chars(char *, int, int);
 /* Loophsh.c */
 int loophsh(char **);
