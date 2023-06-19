@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * get_environ - returns the string array copy of our environ
  * @info: Structure containing potential arguments. Used to maintain
@@ -26,12 +28,12 @@ environ_copy[i] = _strdup(info->environ[i]);
 if (environ_copy[i] == NULL)
 {
 /* Error: Failed to allocate memory */
-free_environ(environ_copy); /* Free the memory allocated so far */
+get_environ ( char **environ_copy); /* Free the memory allocated so far */
 return (NULL);
 }
 }
-	/* Set the last element of the copy to NULL as expected by convention */
-	environ_copy[count] = NULL;
+/* Set the last element of the copy to NULL as expected by convention */
+environ_copy[count] = NULL;
 
 return (environ_copy);
 }
