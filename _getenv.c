@@ -8,34 +8,12 @@
  */
 char **get_environ(info_t *info)
 {
-int i, count = 0;
-char **environ_copy = NULL;
-
-/* Count the number of strings in the environ */
-while (info->environ[count] != NULL)
-count++;
-/* Allocate memory for the copy of the environ */
-environ_copy = malloc((count + 1) * sizeof(char *));
-if (environ_copy == NULL)
+if (!info->environ || info->env_changed)
 {
-/* Error: Failed to allocate memory */
-return (NULL);
+info->environ = list_to_strings(info->env);
+info->env_changed = 0;
 }
-/* Copy each string from the environ to the copy */
-for (i = 0; i < count; i++)
-{
-environ_copy[i] = _strdup(info->environ[i]);
-if (environ_copy[i] == NULL)
-{
-/* Error: Failed to allocate memory */
-get_environ ( char **environ_copy); /* Free the memory allocated so far */
-return (NULL);
-}
-}
-/* Set the last element of the copy to NULL as expected by convention */
-environ_copy[count] = NULL;
-
-return (environ_copy);
+return (info->environ);
 }
 /**
  * _unsetenv - Remove an environment variable

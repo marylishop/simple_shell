@@ -24,7 +24,7 @@ info->path = NULL;
 if (all)
 {
 if (!info->cmd_buf)
-free(info->arg);		
+
 if (info->env)
 free_list(&(info->env));
 if (info->history)
