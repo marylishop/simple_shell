@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  **_memset - fills memory with a constant byte
  *@s: the pointer to the memory area
@@ -24,7 +25,7 @@ char **a = pp;
 if (!pp)
 return;
 while (*pp)
-  free(*pp++);
+free(*pp++);
 free(a);
 }
 /**
@@ -35,8 +36,8 @@ free(a);
  *
  * Return: pointer to da ol'block nameen.
  */
- void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
- {
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
 char *p;
 
 if (!ptr)
@@ -56,5 +57,5 @@ old_size = old_size < new_size ? old_size : new_size;
 while (old_size--)
 p[old_size] = ((char *)ptr)[old_size];
 free(ptr);
-return p;
- }
+return (p);
+}
