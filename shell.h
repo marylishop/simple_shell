@@ -17,7 +17,7 @@
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 
-/*For command chaining */
+/******For command chaining ******/
 #define CMD_NORM	0
 #define CMD_OR		1
 #define CMD_AND		2
@@ -81,8 +81,10 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
+	char **cmd_buf;
+	/* pointer to cmd ; chain buffer, for memory mangement */
+	int cmd_buf_type;
+	/* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
 } info_t;
