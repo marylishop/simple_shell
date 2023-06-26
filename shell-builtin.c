@@ -60,7 +60,7 @@ _putchar('\n');
 return (1);
 }
 _puts(_getenv(info, "OLDPWD=")), _putchar('\n');
-rt = /* TODO: what should this be? */
+rt =
 chdir((d = _getenv(info, "OLDPWD=")) ? d : "/");
 }
 else
@@ -91,6 +91,6 @@ char **argy;
 argy = info->argv;
 _puts("help call works. Function not yet implemented \n");
 if (0)
-_puts(*argy); /* temp att_unused workaround */
+_puts(*argy); 
 return (0);
 }
