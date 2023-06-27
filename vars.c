@@ -61,31 +61,34 @@ replace_string(&info->argv[i], _strdup(""));
 }
 return (0);
 }
- /**
- *replace_alias - replaces an aliases in the tokenized string
- *@info: the parameter struct
+
+/**
+ * replace_alias - replaces an aliases in the tokenized string
+ * @info: the parameter struct
  *
- *Return: 1 if replaced, 0 otherwise
+ * Return: 1 if replaced, 0 otherwise
  */
 int replace_alias(info_t *info)
 {
 int i;
 list_t *node;
-char *pp;
-for (i = 0; info->argv[i]; i++)
+char *p;
+
+for (i = 0; i < 10; i++)
 {
-node = node_starts_with(info->alias, info->argv[i], '=');
-if (node)
-{
-pp = strchr(node->str, '=');
-if (pp)
-{
-replace_string(&(info->argv[i]), _strdup(pp + 1));
-continue;
-}
-}
-}
+node = node_starts_with(info->alias, info->argv[0], '=');
+if (!node)
 return (0);
+free(info->argv[0]);
+p = _strchr(node->str, '=');
+if (!p)
+return (0);
+p = _strdup(p + 1);
+if (!p)
+return (0);
+info->argv[0] = p;
+}
+return (1);
 }
 /**
  *is_chain - The current char in buffer tested is is a chain delemtier
