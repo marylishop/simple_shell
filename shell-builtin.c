@@ -91,6 +91,6 @@ char **argy;
 argy = info->argv;
 _puts("help call works. Function not yet implemented \n");
 if (0)
-_puts(*argy); 
+_puts(*argy);
 return (0);
 }
