@@ -139,16 +139,79 @@ replace_string(&info->argv[i], _strdup(""));
 }
 return (0);
 }
+<<<<<<< HEAD
 /**
  *replace_string - replaces string
  *@old: address of old string
  *@new: new string
+=======
+
+/**
+ * replace_alias - replaces an aliases in the tokenized string
+ * @info: the parameter struct
+>>>>>>> d865764258b4924cdb2c5c08b9988b5adcb75e49
  *
- *Return: 1 if replaced, 0 otherwise
+ * Return: 1 if replaced, 0 otherwise
  */
 int replace_string(char **old, char *new)
 {
+<<<<<<< HEAD
 free(*old);
 *old = new;
+=======
+int i;
+list_t *node;
+char *p;
+
+for (i = 0; i < 10; i++)
+{
+node = node_starts_with(info->alias, info->argv[0], '=');
+if (!node)
+return (0);
+free(info->argv[0]);
+p = _strchr(node->str, '=');
+if (!p)
+return (0);
+p = _strdup(p + 1);
+if (!p)
+return (0);
+info->argv[0] = p;
+}
+return (1);
+}
+/**
+ *is_chain - The current char in buffer tested is is a chain delemtier
+ *@info: The parameter
+ *@buf: The char
+ *@p: The address
+ *
+ *Return: 1 if chain delimeter,
+ *Otherwise  0
+ */
+int is_chain(info_t *info, char *buf, size_t *p)
+{
+size_t b = *p;
+
+if (buf[b] == '|' && buf[b + 1] == '|')
+{
+buf[b] = 0;
+b++;
+info->cmd_buf_type = CMD_OR;
+}
+else if (buf[b] == '&' && buf[b + 1] == '&')
+{
+buf[b] = 0;
+b++;
+info->cmd_buf_type = CMD_AND;
+}
+else if (buf[b] == ';') /* found end of this command */
+{
+buf[b] = 0; /* replace semicolon with null */
+info->cmd_buf_type = CMD_CHAIN;
+}
+else
+return (0);
+*p = b;
+>>>>>>> d865764258b4924cdb2c5c08b9988b5adcb75e49
 return (1);
 }

@@ -110,7 +110,6 @@ void fork_cmd(info_t *);
 char *dup_chars(char *, int, int);
 char *find_path(info_t *, char *, char *);
 int is_cmd(info_t *, char *);
-char *find_command_path(info_t *info, char *pathstr, char *cmd);
 /* Loophsh.c */
 int loophsh(char **);
 /* Toem_errors.c */
@@ -138,6 +137,7 @@ char **strtow2(char *, char);
 /* toem_realloc.c */
 char *_memset(char *, char, unsigned int);
 void ffree(char **);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 void *_realloc(void *, unsigned int, unsigned int);
 /* toem_memory.c */
 int bfree(void **);
@@ -201,7 +201,7 @@ ssize_t get_node_index(list_t *, list_t *);
 /* Toem_vars.c */
 int is_chain(info_t *, char *, size_t *);
 void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
 int replace_vars(info_t *);
+int replace_alias(info_t *);
 int replace_string(char **, char *);
 #endif /* SHELL_H */

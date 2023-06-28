@@ -1,11 +1,17 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
  * is_cmd - determines if a file is an executable command
  * @info: the info struct
  * @path: path to the file
+=======
+ *is_cmd - determines if a file is an executable command
+ *@info: the info struct
+ *@path: path to the file
+>>>>>>> d865764258b4924cdb2c5c08b9988b5adcb75e49
  *
- * Return: 1 if true, 0 otherwise
+ *Return: 1 if true, 0 otherwise
  */
 int is_cmd(info_t *info, char *path)
 {
@@ -21,12 +27,19 @@ return (0);
 }
 
 /**
+<<<<<<< HEAD
  * dup_chars - duplicates characters
  * @pathstr: the PATH string
  * @start: starting index
  * @stop: stopping index
+=======
+ *duplicate_characters - duplicates characters
+ *@pathstr: the PATH string
+ *@start: starting index
+ *@stop: stopping index
+>>>>>>> d865764258b4924cdb2c5c08b9988b5adcb75e49
  *
- * Return: pointer to new buffer
+ *Return: pointer to new buffer
  */
 char *dup_chars(char *pathstr, int start, int stop)
 {
@@ -41,12 +54,19 @@ return (buf);
 }
 
 /**
+<<<<<<< HEAD
  * find_path - finds the command's path in the PATH string
  * @info: the info struct
  * @pathstr: the PATH string
  * @cmd: the command to find
+=======
+ *find_path - finds the command's path in the PATH string
+ *@info: the info struct
+ *@pathstr: the PATH string
+ *@cmd: the command to find
+>>>>>>> d865764258b4924cdb2c5c08b9988b5adcb75e49
  *
- * Return: full path of command if found, or NULL
+ *Return: full path of command if found, or NULL
  */
 char *find_path(info_t *info, char *pathstr, char *cmd)
 {

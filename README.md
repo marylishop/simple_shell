@@ -8,10 +8,9 @@ The project is implemented using the C programming language.
 
 How to use:
 
-How to initialize the program by running the command ./hsh in a Unix Shell environment.  
-Lists the supported built-in commands, including exit, env, setenv, unsetenv, cd, alias, help, and history. 
+How to initialize the program by running the command ./hsh in a Unix Shell environment.
+Lists the supported built-in commands, including exit, env, setenv, unsetenv, cd, alias, help, and history.
 The special conditions handled, such as the treatment of Ctrl+C as Enter, command separators (;), command-line logical operators (|| and &&), and the $? and $$ variables.
 
 Authors:
 The authors of the project: Maryam Ben Aissa and Fatima Zohra Lakhal.
-

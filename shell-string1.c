@@ -66,7 +66,7 @@ a++;
 
 /**
  *_putchar - The character to stdout is writted
- *@c: The character
+ *@c: The character to pointer
  *
  *Return: 1 in Success, -1 on error, and errno is set appropriately.
  */
