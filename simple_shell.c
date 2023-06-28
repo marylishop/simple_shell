@@ -64,7 +64,7 @@ data_shell datash;
 
 signal(SIGINT, get_sigint);
 set_data(&datash, av);
-loop(&datash);
+shell_loop(&datash);
 free_data(&datash);
 if (datash.status < 0)
 return (255);
