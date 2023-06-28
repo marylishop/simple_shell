@@ -1,44 +1,72 @@
 #include "shell.h"
 
 /**
- *main - Entry point to the programm
- *@argc: argmnt count
- *@argv: argmnt vector
+ *free_data - frees data structure
+ *@datash: data structure
  *
- *Return: 0 on success, 1 on error
+ *Return: no return
  */
-int main(int argc, char **argv)
+void free_data(data_shell *datash)
 {
-info_t info[] = { INFO_INIT };
-int f = 2;
+unsigned int i;
 
-asm ("mov %w1, %w0\n\t"
-"add $3, %w0"
-: "=r" (f)
-: "r" (f));
+for (i = 0; datash->_environ[i]; i++)
+{
+free(datash->_environ[i]);
+}
 
-if (argc == 2)
-{
-f = open(argv[1], O_RDONLY);
-if (f == -1)
-{
-if (errno == EACCES)
-exit(126);
-if (errno == ENOENT)
-{
-_eputs(argv[0]);
-_eputs(": 0: Can't open ");
-_eputs(argv[1]);
-_eputchar('\n');
-_eputchar(BUF_FLUSH);
-exit(127);
+free(datash->_environ);
+free(datash->pid);
 }
-return (EXIT_FAILURE);
+
+/**
+ *set_data - Initialize data structure
+ *@datash: data structure
+ *@av: The vector argmnt
+ *
+ *Return: no return
+ */
+void set_data(data_shell *datash, char **av)
+{
+unsigned int i;
+
+datash->av = av;
+datash->input = NULL;
+datash->args = NULL;
+datash->status = 0;
+datash->counter = 1;
+
+for (i = 0; environ[i]; i++)
+;
+
+datash->_environ = malloc(sizeof(char *) * (i + 1));
+
+for (i = 0; environ[i]; i++)
+{
+datash->_environ[i] = _strdup(environ[i]);
 }
-info->readfd = f;
+
+datash->_environ[i] = NULL;
+datash->pid = aux_itoa(getpid());
 }
-populate_env_list(info);
-read_history(info);
-hsh(info, argv);
-return (EXIT_SUCCESS);
+
+/**
+ *main - Entry point
+ *@ac: The count argmnt
+ *@av: The vector argmnt
+ *
+ *Return: 0 (Success).
+ */
+int main(int ac, char **av)
+{
+data_shell datash;
+(void) ac;
+
+signal(SIGINT, get_sigint);
+set_data(&datash, av);
+loop(&datash);
+free_data(&datash);
+if (datash.status < 0)
+return (255);
+return (datash.status);
 }
