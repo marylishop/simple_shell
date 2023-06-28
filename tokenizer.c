@@ -9,43 +9,38 @@ char **strtow(char *str, char *d)
 {
 int i, j, k, m, numwords = 0;
 char **s;
-if (str == NULL || d == NULL || str[0] == '\0' || d[0] == '\0')
+if (str == NULL || str[0] == 0)
 return (NULL);
-/* Count the number of words */
+if (!d)
+d = " ";
 for (i = 0; str[i] != '\0'; i++)
-{
-if (str[i] != d[0] && (str[i + 1] == '\0' || strchr(d, str[i + 1]) != NULL))
+if (!is_delim(str[i], d) && (is_delim(str[i + 1], d) || !str[i + 1]))
 numwords++;
-}
 if (numwords == 0)
 return (NULL);
-s = malloc((numwords + 1) * sizeof(char *));
-if (s == NULL)
+s = malloc((1 + numwords) *sizeof(char *));
+if (!s)
 return (NULL);
-i = 0;
-j = 0;
-/* Extract the words and store them in the array */
-while (str[i] != '\0')
+for (i = 0, j = 0; j < numwords; j++)
 {
-while (str[i] == d[0])
+while (is_delim(str[i], d))
 i++;
 k = 0;
-while (str[i + k] != d[0] && str[i + k] != '\0')
+while (!is_delim(str[i + k], d) && str[i + k])
 k++;
 s[j] = malloc((k + 1) * sizeof(char));
-if (s[j] == NULL)
+if (!s[j])
 {
-for (m = 0; m < j; m++)
-free(s[m]);
+for (k = 0; k < j; k++)
+free(s[k]);
 free(s);
 return (NULL);
 }
-strncpy(s[j], &str[i], k);
-s[j][k] = '\0';
-i += k;
-j++;
+for (m = 0; m < k; m++)
+s[j][m] = str[i++];
+s[j][m] = 0;
 }
-s[j] = (NULL);
+s[j] = NULL;
 return (s);
 }
 /**
