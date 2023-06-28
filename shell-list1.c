@@ -8,14 +8,14 @@
  */
 size_t list_len(const list_t *h)
 {
-size_t a = 0;
+size_t index = 0;
 
 while (h)
 {
 h = h->next;
-a++;
+index++;
 }
-return (a);
+return (index);
 }
 
 /**
@@ -27,30 +27,30 @@ return (a);
 char **list_to_strings(list_t *head)
 {
 list_t *node = head;
-size_t a = list_len(head), b;
+size_t i = list_len(head), j;
 char **string;
 char *s;
 
-if (!head || !a)
+if (!head || !i)
 return (NULL);
-string = malloc(sizeof(char *) * (a + 1));
+string = malloc(sizeof(char *) * (i + 1));
 if (!string)
 return (NULL);
-for (a = 0; node; node = node->next, a++)
+for (i = 0; node; node = node->next, i++)
 {
 s = malloc(_strlen(node->str) + 1);
 if (!s)
 {
-for (b = 0; b < a; b++)
-free(string[b]);
+for (j = 0; j < i; j++)
+free(string[j]);
 free(string);
 return (NULL);
 }
 
 s = _strcpy(s, node->str);
-string[a] = s;
+string[i] = s;
 }
-string[a] = NULL;
+string[i] = NULL;
 return (string);
 }
 

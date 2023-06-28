@@ -9,22 +9,22 @@
  */
 char *_strncpy(char *dest, char *src, int n)
 {
-int a, b;
+int i, j;
 char *s = dest;
 
-a = 0;
-while (src[a] != '\0' && a < n - 1)
+i = 0;
+while (src[i] != '\0' && i < n - 1)
 {
-dest[a] = src[a];
-a++;
+dest[i] = src[i];
+i++;
 }
-if (a < n)
+if (i < n)
 {
-b = a;
-while (b < n)
+j = i;
+while (j < n)
 {
-dest[b] = '\0';
-b++;
+dest[j] = '\0';
+j++;
 }
 }
 return (s);
@@ -39,29 +39,29 @@ return (s);
  */
 char *_strncat(char *dest, char *src, int n)
 {
-int a, b;
+int i, j;
 char *s = dest;
 
-a = 0;
-b = 0;
-while (dest[a] != '\0')
-a++;
-while (src[b] != '\0' && b < n)
+i = 0;
+j = 0;
+while (dest[i] != '\0')
+i++;
+while (src[j] != '\0' && j < n)
 {
-dest[a] = src[b];
-a++;
-b++;
+dest[i] = src[j];
+i++;
+j++;
 }
-if (b < n)
-dest[a] = '\0';
+if (j < n)
+dest[i] = '\0';
 return (s);
 }
 
 /**
- **_strchr - The character located to a string
+ **_strchr - locates a character in a string
  *@s: the string
  *@c: the character
- *Return: to s , The  pointer to the memory area s
+ *Return: to (s) , The  pointer to the memory area s
  */
 char *_strchr(char *s, char c)
 {
